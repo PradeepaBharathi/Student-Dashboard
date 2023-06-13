@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
 
+import { useState } from 'react';
+import './App.css';
+import Students from './Components/Students.js';
+import {Data} from './Data/Data';
+import { Route, Routes } from 'react-router-dom';
+import Dashboard from './Components/Dashboard';
+import EditAstudent from './Components/EditAstudent';
+import Editstudent from './Components/Editstudent';
+import Nopage from './Components/Nopage';
 function App() {
+  const [students,setStudents] = useState(Data);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route exact path="/" element={<Dashboard/>}/>
+        <Route path="/students" element ={<Students
+          students={students}
+          setStudents={setStudents}
+          />}/>
+          <Route path = "/create-user" element={<EditAstudent
+            students={students}
+            setStudents ={setStudents}
+            />}></Route>
+
+            <Route path ="/edit-user/:id"
+             element={<Editstudent
+            students={students}
+            setStudents = {setStudents}
+            />}></Route>
+
+            <Route path="*" element={<Nopage/>}></Route>
+      </Routes>
+     
+      {/* <Students
+      students={students}
+      setStudents={setStudents}/> */}
     </div>
   );
 }
