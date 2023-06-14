@@ -20,7 +20,10 @@ function Editstudent({students,setStudents}) {
   
 
   useEffect(()=>{
-    const studentData = students.find(stud=> stud.id === id);
+    const studentData = students.find(stud=> stud.id == id);
+    console.log(studentData)
+    console.log(students)
+    console.log(id)
     if(studentData){
     setIdx(studentData.id)
     setName(studentData.name)
